@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  post 'relationships/create/:id', to: 'relationships#follow',  as: 'follow'
-  post 'relationships/destroy/:id', to: 'relationships#unfollow',  as: 'unfollow'
+  post 'relationships/create/:id', to: 'relationships#create',  as: 'follow'
+  post 'relationships/destroy/:id', to: 'relationships#destroy',  as: 'unfollow'
 
   resources :users, only: %i[new create show edit]
   resources :events do

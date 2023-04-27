@@ -8,15 +8,15 @@ RSpec.describe "Followings", type: :system do
 
   describe 'フォロー関係' do
     context 'フォローする' do
-      fit 'ユーザーは他のイベント参加者をフォローできる。' do
+      it 'ユーザーは他のイベント参加者をフォローできる。' do
         attended_event
         login(new_user)
         visit root_path
         expect(page).to have_content(attended_event.event.title)
-        debugger
-        expect(page).to have_content(attended_event.user.name)
+
+        click_link attended_event.event.title
         click_link attended_event.user.name
-        
+
         expect(page).to have_content('フォローする')
 
         click_link 'フォローする'
