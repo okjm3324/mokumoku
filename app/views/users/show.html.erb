@@ -1,0 +1,33 @@
+人のプロフィールです
+<!-- User info -->
+<div class="row align-items-center">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+    <!-- Bg -->
+    <div class="pt-16 rounded-top-md" style="
+    background: url(<%= image_url('profile-bg.jpg') %>) no-repeat;
+      background-size: cover;
+    "></div>
+    <div class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+      <div class="d-flex align-items-center">
+        <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+          <%= image_tag @user.decorate.avatar, class: 'avatar-xl rounded-circle border border-4 border-white' %>
+        </div>
+        <div class="lh-1">
+          <h2 class="mb-0">
+            <%= @user.name %>
+          </h2>
+          <p class="mb-0 d-block"><%= @user.email %></p>
+          <p class="mb-0 d-block"><%= @user.hobby %></p>
+          <p class="mb-0 d-block"><%= @user.profile %></p>
+        </div>
+        <% if current_user != @user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォローを外す", unfollow_path(@user.id), method: :post %>
+          <% else %>
+            <%= link_to "フォローする", follow_path(@user.id), method: :post %>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
